@@ -1,7 +1,22 @@
 ---
 layout: layout.liquid
-title: 11ty Boilerplate
+title: Random Name Generator
 ---
 
-<h1>Yet Another 11ty <strong>Boilerplate</strong></h1>
-<img alt="pine" src="/images/pine.png" width="50" />
+<div class="container" x-data="nameGenerator()">
+  <h1 x-text="randomName" class="name-display"></h1>
+  <button @click="generateRandomName" class="generate-btn">Generate Random Name</button>
+</div>
+
+<script>
+  function nameGenerator() {
+    return {
+      names: ["Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Heidi", "Ivy", "Jack"],
+      randomName: "Click the button to get a name!",
+      generateRandomName() {
+        const randomIndex = Math.floor(Math.random() * this.names.length);
+        this.randomName = this.names[randomIndex];
+      }
+    };
+  }
+</script>
